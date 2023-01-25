@@ -1,33 +1,34 @@
-let myGamePiece;
-let myObstacle;
-let myUpBtn;
+let Player;
+let Constructor;
+let Sun;
 
 function StartGame() {
     MyGameArea.start()
-    myGamePiece = new Component(100, 100, "purple", 20, 580);
-    myObstacle = new Component(25, 25, "green", 1450, 655);
-    myUpBtn = new Component(50, 25, "yellow",685, 307);
+    Player = new Component(100, 100, "purple", 50, 550);
+    Constructor = new Component(25, 25, "green", 1450, 625);
+    Sun = new Component(50, 25, "yellow",685, 320);
     /*myUpBtn = new Component(350, 35, "brown", 1200, 500);*/
     /*passed back width, height, color starting x value, starting y value (canvasHeight-blockHeight)*/
 }
 
 function moveup() {
-    myGamePiece.speedY -= 5;
+    Player.speedY -= 5;
 }
 
 /*function movedown() {
-    myGamePiece.speedY += 5;
+    Player.speedY += 5;
 }
 
 function moveleft() {
-    myGamePiece.speedX -= 5;
+    Player.speedX -= 5;
 }
 
 function moveright() {
-    myGamePiece.speedX += 5;
-}*/
-function stopMove() {
-    /*sets the speed indicators to 0*/
-    myGamePiece.speedX = 0;
-    myGamePiece.speedY = 0;
+    Player.speedX += 5;
 }
+function stopMove() {
+    sets the speed indicators to 0
+    Player.speedX = 0;
+    Player.speedY = 0;
+}
+*/

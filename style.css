@@ -1,6 +1,6 @@
 canvas {
 margin: auto;
-        background: linear-gradient(white, pink, salmon, orange, lightyellow,blue,  lightblue, beige, beige, white);
+        background: linear-gradient(white, pink, salmon, salmon, orange, orange, lightyellow,blue, rgb(00, 100, 255), 	deepskyblue, lightblue, beige, beige, white);
 
     /*border: 50px solid black;
     background-color: navy;

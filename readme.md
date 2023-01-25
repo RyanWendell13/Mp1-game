@@ -1,0 +1,1 @@
+Welcome to Beach runner where the point of the game is to see how far you can get without jumping on turtles!

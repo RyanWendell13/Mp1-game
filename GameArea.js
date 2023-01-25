@@ -22,17 +22,17 @@ let MyGameArea = {
 function UpdateGameArea() {
     /*calls the clear() and the Update() method*/
     MyGameArea.clear();
-    myUpBtn.Update();
-    myObstacle.Update();
-    myGamePiece.speedX = 0;
-    myGamePiece.speedY = 0;
-    if (MyGameArea.keys && MyGameArea.keys[37]) { myGamePiece.speedX = -5; }
-    if (MyGameArea.keys && MyGameArea.keys[39]) { myGamePiece.speedX = 5; }
-    if (MyGameArea.keys && MyGameArea.keys[38]) { myGamePiece.speedY = -5; }
-    if (MyGameArea.keys && MyGameArea.keys[40]) { myGamePiece.speedY = 5; }
+    Sun.Update();
+    Constructor.Update();
+    Player.speedX = 0;
+    Player.speedY = 0;
+    if (MyGameArea.keys && MyGameArea.keys[37]) { Player.speedX = -5; }
+    if (MyGameArea.keys && MyGameArea.keys[39]) { Player.speedX = 5; }
+    if (MyGameArea.keys && MyGameArea.keys[38]) { Player.speedY = -5; }
+    if (MyGameArea.keys && MyGameArea.keys[40]) { Player.speedY = 5; }
     /*if a key is pressed and that key is arrow  left, right, up or down, then change the speed of x to -1, 1, or speed of Y to -1, 1 respectively.*/
-    myGamePiece.NewPos();
+    Player.NewPos();
     /*k with the players position*/
-    myGamePiece.Update();
+    Player.Update();
     /*Updates game with the players position*/
 }

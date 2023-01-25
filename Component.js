@@ -9,7 +9,7 @@ class Component {
         /*This property changes the component's up down position.*/
         this.x = x;
         this.y = y;
-        this.ctx = myGameArea.context;
+        this.ctx = MyGameArea.context;
         this.color = color;
     }
 
@@ -19,7 +19,7 @@ class Component {
     }
     
     NewPos() {
-        /*newPos(), which uses the speedX and speedy*/
+        /*newPos(), which uses the speedX and speedY*/
         this.x += this.speedX;
         this.y += this.speedY;
     }

@@ -2,14 +2,32 @@
 <html lang="en">
 
 <head>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <script src="index.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <script src="component.js"></script>
-    <script src="GameArea.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Beach Runner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: linear-gradient(white, pink, salmon, salmon, orange, orange, lightyellow,
+                    blue, rgb(00, 100, 255), deepskyblue, lightblue,
+                    rgb(245, 245, 180), rgb(245, 245, 207), rgb(245, 245, 233), white);
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
 </head>
 
-<body onload="StartGame()">
+<body>
+    <canvas id="game" width="640" height="400"></canvas>
+    <script src="Index.js"></script>
+    <script src="Player.js"></script>
+    <script src="Obstacle.js"></script>
+    <script src="GameFunctions.js"></script>
+
 </body>
 
 </html>

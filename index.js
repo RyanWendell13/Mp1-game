@@ -92,9 +92,7 @@ class Player {
 
     //Draws Square for player
     Draw() {
-        
         ctx.beginPath();
-        // ctx.fillStyle = this.c;
         ctx.drawImage(this.image,this.x, this.y, this.w, this.h);
         ctx.closePath();
     }
@@ -116,7 +114,8 @@ class Obstacle {
         this.w = w;
         this.h = h;
         this.c = c;
-
+        this.image = new Image();
+        this.image.src = "./Images/CharacterSprite/player.png";
         this.dx = -gameSpeed;
     }
     /*It is the same as with player. (the constructor creates variables for Component such as x pos, y pos, width, height, and color
@@ -137,8 +136,7 @@ class Obstacle {
     Draw() {
         
         ctx.beginPath();
-        ctx.fillStyle = this.c;
-        ctx.fillRect(this.x, this.y, this.w, this.h);
+        ctx.drawImage(this.image,this.x, this.y-60, this.w*3, this.h*3);
         ctx.closePath();
     }
 }

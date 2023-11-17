@@ -1,9 +1,9 @@
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
-
+const scoreElement = document.getElementById('score');
 
 // Variables
-let score;
+let score = 0;
 let player;
 let gravity;
 let obstacles = [];
@@ -27,20 +27,23 @@ document.addEventListener('keyup', function (evt) {
 
 //Player rules & values
 class Player {
-    constructor(x, y, w, h, c) {
+    constructor(x, y, w, h) {
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
-        this.c = c;
         this.dy = 0;
         this.jumpForce = 11;
-
         this.grounded = false;
         this.jumpTimer = 0;
         this.image = new Image();
-        this.image.src = "./Images/CharacterSprite/player.png";
+        this.image.src = "./Images/Walker/Walker1.png";
         ctx.imageSmoothingEnabled = false; 
+        this.imageLinks = ["./Images/Walker/Walker1.png","./Images/Walker/Walker2.png","./Images/Walker/Walker3.png"]
+        this.imageIndex = 0;
+        this.imageIndexRev = false;
+        this.framesPassed = 0;
+        this.repenting = false
     }
     /*the constructor creates variables for Component such as x pos, y pos, width, height, and color
    This.dy property sets the direction of y's force
@@ -51,13 +54,57 @@ class Player {
 
 
     Animate() {
+        this.framesPassed+=1
+
         // Jump
-        if (keys['Space']) {
+        
+
+        if (this.repenting == true){
+            score -= 1
+        }
+        else{
+            score+=1
+        }
+
+        if(keys['KeyB']){
+            this.repenting = true
+            console.log("BNICE")
+        }
+        else if (keys['Space']) {
             this.Jump();
         } else {
             this.jumpTimer = 0;
         }
+        if (this.framesPassed > 5){
+            if (!this.repenting){
+                this.image.src =  this.imageLinks[this.imageIndex]
 
+            }
+            this.framesPassed = 0
+            if(!keys['KeyB']){
+                this.repenting = false
+            }
+        }
+        else{
+            if (this.repenting == true) {
+                this.image.src = "./Images/Walker/WalkerRepent.png"
+            }
+            if (this.imageIndex <= 0) {
+                this.imageIndexRev = false
+            }
+            if (this.imageIndex >= this.imageLinks.length-1) {
+                this.imageIndexRev = true
+    
+            }
+            if (this.imageIndexRev == false) {
+            
+                this.imageIndex+=1;
+            }
+            else {
+            
+                this.imageIndex-=1;
+            }
+        }
 
         //adding value
         this.y += this.dy;
@@ -68,12 +115,14 @@ class Player {
         if (this.y + this.h < canvas.height) {
             this.dy += gravity;
             this.grounded = false;
+            this.image.src = "./Images/Walker/Walker3.png"
         } else {
             this.dy = 0;
             this.grounded = true;
             this.y = canvas.height - this.h;
-            this.image.src = "./Images/CharacterSprite/player.png";
         }
+
+        
 
         this.Draw();
     }
@@ -82,18 +131,17 @@ class Player {
         if (this.grounded && this.jumpTimer == 0) {
             this.jumpTimer = 1;
             this.dy = -this.jumpForce;
-            this.image.src =  "./Images/CharacterSprite/playerJump.png";
         } else if (this.jumpTimer > 0 && this.jumpTimer < 11) {
             this.jumpTimer++;
             this.dy = -this.jumpForce - (this.jumpTimer / 50);
         }
     }
-
+    
 
     //Draws Square for player
     Draw() {
         ctx.beginPath();
-        ctx.drawImage(this.image,this.x, this.y, this.w, this.h);
+        ctx.drawImage(this.image,this.x-this.w, this.y, this.w, this.h);
         ctx.closePath();
     }
 }
@@ -108,14 +156,13 @@ A fill rect draws a rect(angle) that is filled according to the current fillStyl
 
 //Obstacle rules & values
 class Obstacle {
-    constructor(x, y, w, h, c) {
+    constructor(x, y, w, h) {
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
-        this.c = c;
         this.image = new Image();
-        this.image.src = "./Images/CharacterSprite/player.png";
+        this.image.src = "./Images/Commandments.png";
         this.dx = -gameSpeed;
     }
     /*It is the same as with player. (the constructor creates variables for Component such as x pos, y pos, width, height, and color
@@ -136,7 +183,7 @@ class Obstacle {
     Draw() {
         
         ctx.beginPath();
-        ctx.drawImage(this.image,this.x, this.y-60, this.w*3, this.h*3);
+        ctx.drawImage(this.image,this.x, this.y-20, this.w, this.h);
         ctx.closePath();
     }
 }
@@ -152,19 +199,19 @@ A fill rect draws a rect(angle) that is filled according to the current fillStyl
 
 // Game Functions
 function SpawnObstacle() {
-    let size = 25;
-    let obstacle = new Obstacle(canvas.width - size, canvas.height - size, 25, 25, 'green');
+    let size = 0;
+    let obstacle = new Obstacle(canvas.width - size, canvas.height - 50, 75, 75);
     obstacles.push(obstacle);
 }
 
 function Start() {
     canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.height = window.innerHeight/1.5;
 
-    gameSpeed = 3;
-    gravity = 1;
+    gameSpeed = 5;
+    gravity = .75;
 
-    player = new Player(25, 0, 100, 100, 'purple');
+    player = new Player(canvas.width/3, 0, 100, 100);
 
     
 
@@ -175,7 +222,11 @@ let initialSpawnTimer = 200;
 let spawnTimer = initialSpawnTimer;
 function Update() {
     requestAnimationFrame(Update);
+
+
+    
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    scoreElement.textContent = "SINS AGAINST GOD: " + score;
 
     spawnTimer--;
     if (spawnTimer <= 0) {
@@ -202,8 +253,8 @@ function Update() {
         }
 
         if (
-            player.x < o.x + o.w &&
-            player.x + player.w > o.x &&
+            player.x < o.x + o.w+ 60 &&
+            player.x-120 + player.w > o.x &&
             player.y < o.y + o.h &&
             player.y + player.h > o.y
         ) {

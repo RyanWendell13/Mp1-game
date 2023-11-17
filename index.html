@@ -10,18 +10,35 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            background: linear-gradient(white, pink, salmon, salmon, orange, orange, lightyellow,
-                    blue, rgb(00, 100, 255), deepskyblue, lightblue,
-                    rgb(245, 245, 180), rgb(245, 245, 207), rgb(245, 245, 233), white);
+            
+        }
+        body{
+            background-image: url('./Images/Background.png');
+            background-repeat: repeat;
         }
 
         canvas {
             display: block;
+            border: 5px bla;
+        }
+        .title {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            color: yellow;
+        }
+        .score {
+            color: lawngreen;
+            position: absolute;
+            top: 50px;
+            left: 5px;
         }
     </style>
 </head>
 
 <body>
+    <h1 class="title">SINNERS IN THE HANDS OF AN ANGRY GOD</h1>
+    <h2 class="score" id="score">SINS AGAINT GOD: </h2>
     <canvas id="game" width="640" height="400"></canvas>
     <script src="Index.js"></script>
     <script src="Player.js"></script>

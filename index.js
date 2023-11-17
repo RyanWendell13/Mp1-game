@@ -38,6 +38,9 @@ class Player {
 
         this.grounded = false;
         this.jumpTimer = 0;
+        this.image = new Image();
+        this.image.src = "./Images/CharacterSprite/player.png";
+        ctx.imageSmoothingEnabled = false; 
     }
     /*the constructor creates variables for Component such as x pos, y pos, width, height, and color
    This.dy property sets the direction of y's force
@@ -69,6 +72,7 @@ class Player {
             this.dy = 0;
             this.grounded = true;
             this.y = canvas.height - this.h;
+            this.image.src = "./Images/CharacterSprite/player.png";
         }
 
         this.Draw();
@@ -78,6 +82,7 @@ class Player {
         if (this.grounded && this.jumpTimer == 0) {
             this.jumpTimer = 1;
             this.dy = -this.jumpForce;
+            this.image.src =  "./Images/CharacterSprite/playerJump.png";
         } else if (this.jumpTimer > 0 && this.jumpTimer < 11) {
             this.jumpTimer++;
             this.dy = -this.jumpForce - (this.jumpTimer / 50);
@@ -87,9 +92,10 @@ class Player {
 
     //Draws Square for player
     Draw() {
+        
         ctx.beginPath();
-        ctx.fillStyle = this.c;
-        ctx.fillRect(this.x, this.y, this.w, this.h);
+        // ctx.fillStyle = this.c;
+        ctx.drawImage(this.image,this.x, this.y, this.w, this.h);
         ctx.closePath();
     }
 }
@@ -129,6 +135,7 @@ class Obstacle {
 
     //Draws Square for Obstacle (Turtle)
     Draw() {
+        
         ctx.beginPath();
         ctx.fillStyle = this.c;
         ctx.fillRect(this.x, this.y, this.w, this.h);
@@ -159,9 +166,9 @@ function Start() {
     gameSpeed = 3;
     gravity = 1;
 
+    player = new Player(25, 0, 100, 100, 'purple');
 
-    player = new Player(25, 0, 50, 50, 'purple');
-
+    
 
     requestAnimationFrame(Update);
 }

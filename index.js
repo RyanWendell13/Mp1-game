@@ -2,6 +2,8 @@ const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
 const scoreElement = document.getElementById('score');
 
+const wordElemets = [document.getElementById('words1'),document.getElementById('words2'),document.getElementById('words3')]
+console.log (wordElemets)
 // Variables
 let score = 0;
 let player;
@@ -9,6 +11,7 @@ let gravity;
 let obstacles = [];
 let gameSpeed;
 let keys = {};
+let wordIndex = 0;
 //declared variables
 
 
@@ -75,7 +78,13 @@ class Player {
         } else {
             this.jumpTimer = 0;
         }
-        if (this.framesPassed > 5){
+        if (this.framesPassed > 6){
+            wordElemets[wordIndex].classList.toggle('hidden')
+            wordIndex += 1
+            if (wordIndex == wordElemets.length){
+                wordIndex = 0;
+            }
+            wordElemets[wordIndex].classList.toggle('hidden')
             if (!this.repenting){
                 this.image.src =  this.imageLinks[this.imageIndex]
 
@@ -261,7 +270,6 @@ function Update() {
             obstacles = [];
             score = 0;
             spawnTimer = initialSpawnTimer;
-            gameSpeed = 3;
         }
 
         o.Update();

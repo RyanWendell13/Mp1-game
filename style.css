@@ -1,0 +1,106 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+body{
+    background-image: url('./Images/Background.png');
+    background-repeat: repeat;
+}
+
+canvas {
+    display: block;
+    border-bottom: solid 20px firebrick;
+}
+.title {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    color: yellow;
+}
+.score {
+    color: lawngreen;
+    position: absolute;
+    top: 100px;
+    left: 5px;
+}
+.quoteScore {
+    color: hotpink;
+    position: absolute;
+    top: 50px;
+    left: 5px;
+}
+img{
+    position: absolute;
+    image-rendering: pixelated;
+}
+.hidden{
+    
+    visibility: hidden;
+}
+#words1{
+    left: 50vw;
+    top: 160px;
+    width: 50%;
+    /* display: none; */
+}
+#words2{
+    /* display: none; */
+    width: 30%;
+    top: 50px;
+    left: 25px;
+    
+}
+#words3{
+    left: 150px;
+    top: 500px;
+    width: 50%;
+    /* display: none; */
+}
+.bibleQuotes{
+    background-color: yellow;
+    width: 400px;
+    text-align: center;
+    position: absolute;
+    padding: 10px;
+    color: wheat;
+    border: 30px ridge wheat;
+    top: 34px;
+    right: 20px;
+}
+.bibleTimer{
+    text-align: center;
+    background-color: lawngreen;
+    border: 15px ridge wheat;
+    padding: 0px;
+    position: absolute;
+    width: 20%;
+    height: 20vh;
+    color: red;
+    position: absolute;
+    bottom: 165px;
+    left: 10px;
+}
+.timerBar{
+    border: inset 5px lawngreen;
+    width: auto;
+    height: 30px;
+    margin: 10px;
+    background-color: darkslategray;
+}
+
+.loaded{
+    height: 100%;
+    background-color: aqua;
+}
+.bibleQuotes > * {
+    margin: 5px;
+}
+.bibleQuotes>form>* {
+    width: 100%;
+    background-color: wheat;
+    padding: 5px;
+    border: 20px ridge wheat;
+}

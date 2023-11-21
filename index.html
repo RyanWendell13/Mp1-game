@@ -5,68 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Beach Runner</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            
-        }
-        body{
-            background-image: url('./Images/Background.png');
-            background-repeat: repeat;
-        }
-
-        canvas {
-            display: block;
-            border-bottom: solid 20px firebrick;
-        }
-        .title {
-            position: absolute;
-            width: 100%;
-            text-align: center;
-            color: yellow;
-        }
-        .score {
-            color: lawngreen;
-            position: absolute;
-            top: 50px;
-            left: 5px;
-        }
-        img{
-            position: absolute;
-            image-rendering: pixelated;
-        }
-        .hidden{
-            
-            display: none;
-        }
-        #words1{
-            left: 50vw;
-            top: 50px;
-            width: 50%;
-            /* display: none; */
-        }
-        #words2{
-            /* display: none; */
-            width: 30%;
-            
-        }
-        #words3{
-            left: 150px;
-            top: 500px;
-            width: 50%;
-            /* display: none; */
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <h1 class="title">SINNERS IN THE HANDS OF AN ANGRY GOD</h1>
     <h2 class="score" id="score">SINS AGAINT GOD: </h2>
+    <h2 class="quoteScore" id="quoteScore">GOD'S LOVE: </h2>
+
     <img class="hidden" id="words1" src="./Images/Words1.png" alt="">
     <img class="hidden" id="words2" src="./Images/Words3.png" alt="">
     <img class="hidden" id="words3" src="./Images/Words4.png" alt="">
+
+    <div class="bibleTimer">
+        <h2>QUOTE TIMER HURRY!!!</h2>
+        <div class="timerBar">
+            <div class="loaded" id="Bar"></div>
+        </div>
+        
+    </div>
+    <div class="bibleQuotes" id="bibleQuotes">
+        <h3>eNTER cORRESPONDING qUOTE</h3>
+        <h4 id="Question"></h4>
+        <form id="Form">
+            <input type="text" name="Quote" id="Quote">
+        </form>
+    </div>
     <canvas id="game" width="640" height="400"></canvas>
     <script src="Index.js"></script>
     <script src="Player.js"></script>

@@ -104,3 +104,10 @@ img{
     padding: 5px;
     border: 20px ridge wheat;
 }
+.controls{
+    color: black;
+    background-color: white;
+    position: absolute;
+    left: 30%;
+    top: 20vh;
+}

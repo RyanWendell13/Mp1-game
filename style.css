@@ -111,3 +111,14 @@ img{
     left: 30%;
     top: 20vh;
 }
+.cross1{
+    position: absolute;
+    width: 20%;
+    right: 20px;
+    bottom: 20px;
+}
+.cross2{
+ position: absolute;
+ left: 40%;
+ bottom: 50%;
+}
